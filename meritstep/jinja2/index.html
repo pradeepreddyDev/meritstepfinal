@@ -1,0 +1,432 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% include 'navigation.html' %}
+
+
+    <!-- Hero Header -->
+    <header class="hero-header" style="background-image: linear-gradient(to right,rgba(0, 86, 215, 0.71),rgba(0, 255, 208, 0.82)),url({{ static('img/img.jpg') }});">
+        <div class="container">
+            <div class="intro-text text-left">
+                <div class="intro-lead-in">{{ index.title }}</div>
+                <div class="intro-heading">{{ index.overview }}</div>
+               <div class="banner-form">
+                   <div class="intro bg-orange margin-top-30">
+            <div class="bg-black">
+                <div class="text-center">
+                    <h1 class="title-section"><span class="title-regular clr-fff">Contact Us</span></h1>
+                </div>
+            </div>
+            <div class="row">
+
+
+
+
+
+                <form action="/homecontact" class="cf" method="post">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+  <div class="left cf">
+    <input type="text" name="name" class="pd-8" id="input-name" placeholder="Full Name*">
+    <input type="email" name="email" class="pd-8" id="input-email" placeholder="Email address*">
+    <input type="text" name="phone" class="pd-8" id="input-phone" placeholder="Phone*">
+  </div>
+  <select id="sel1" name="course" class="pd-8">
+                        <option>Select Course</option>
+                                                       {% for course in courses1 %}
+                                                <option value="{{ course.title }}">{{ course.title }}</option>
+                                                 {% endfor %}
+                                             </select>
+                 <select name="mode" class="pd-8">
+                        <option value="0">Select Mode</option>
+                        <option value="online">Online</option>
+                        <option value="offline">Self Based</option>
+                     </select>
+ <div class="text-center pd-30">
+                 <button id="modal_btn" type="submit" class="demo" value="Submit">Submit</button>
+            </div>
+</form>
+
+
+
+
+
+            </div>
+        </div>
+               </div>
+            </div>
+        </div>
+    </header>
+
+<section class="page-section" id="intro">
+        <div class="container intro">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="title-section"><span class="title-regular">{{ index.sub1title }}</span></h1>
+                    <hr class="title-underline-center">
+
+                </div>
+            </div>
+            <div class="row text-center">
+                <div>
+                    <div class="col-md-4 col-sm-6">
+                        <div>
+                            <i class="fa fa-book"></i>
+
+                                <label>CLASSROOM TRAINING</label>
+                            <p>{{ index.classroomtraining }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div>
+                            <i class="fa fa-desktop"></i>
+
+                                <label>ONLINE TRAINING</label>
+                            <p> {{ index.onlinetraining }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                        <div>
+                           <i class="fa fa-black-tie" aria-hidden="true"></i>
+
+                                <label>CORPORATE TRAINING</label>
+                            <p>{{ index.corporatetraining }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href=".liveDemo" data-toggle="modal" class="demo">Schedule Your Free Demo</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Header Listing -->
+    <section class="page-section" id="sliders">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="title-section">{{ index.trending }}</h1>
+                    <hr class="title-underline-center">
+
+                </div>
+            </div>
+            <div id="owlcarousel">
+
+                        <div class="owl-carousel-main owl-carousel owl-theme">
+                            {% for courses1 in trending_course %}
+                            <div class="item">
+
+
+
+                    <a href="/course_details/{{ courses1.id }}"><img class="img-thumbnail img-responsive margin-bottom-15" src="../media/{{ courses1.image }}" alt=""></a>
+                     <div class="course-enroll">
+                     <a href="{{ courses1.title }}"><h2>DevOps</h2></a>
+                    <div class="fx">
+                    <p><a href="/course_details/{{ courses1.id }}" class="btn btn-md btn-primary">Enroll Now</a></p>
+                    <h6 class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <strong>Duration</strong>{{ courses1.duration }}<br>
+
+<i class="fa fa-money" aria-hidden="true"></i> <strong>Course Fee</strong>{{ courses1.coursefee }}
+
+</h6>
+</div></div>
+
+
+                </div>
+
+                      {% endfor %}
+
+                        </div>
+
+                    </div>
+        </div>
+    </section>
+
+<section class="course-sub-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 spotlight-container course-sub">
+                    <h2 class="title-section"><span class="title-regular clr-fff">{{ index.popular }}</span></h2>
+                    <hr class="title-underline">
+                       {% autoescape on %}
+                    <p>{{ index.description }}</p>
+                       {% endautoescape %}
+                </div>
+                <div class="col-md-7 padding-0">
+                    <div class="course-sub">
+
+                        <div class="owl-carousel-sub owl-carousel owl-theme">
+
+
+                      {% for courses1 in popular_course %}
+                            <div class="item">
+
+
+
+                    <a href="/course_details/{{ courses1.id }}"><img class="img-thumbnail img-responsive margin-bottom-15" src="../media/{{ courses1.image }}" alt=""></a>
+                     <div class="course-enroll">
+                     <a href="{{ courses1.title }}"><h2>DevOps</h2></a>
+                    <div class="fx">
+                    <p><a href="/course_details/{{ courses1.id }}" class="btn btn-md btn-primary">Enroll Now</a></p>
+                    <h6 class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <strong>Duration</strong>{{ courses1.duration }}<br>
+
+<i class="fa fa-money" aria-hidden="true"></i> <strong>Course Fee</strong>{{ courses1.coursefee }}
+
+</h6>
+</div></div>
+
+
+                </div>
+
+                      {% endfor %}
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<section class="page-section">
+        <div class="container intro">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="title-section"><span class="title-regular">{{ index.sub4title }}</span></h1>
+                    <hr class="title-underline-center">
+                     {% autoescape on %}
+                    <p class="lead">{{ index.overview1 }}</p>
+                     {% endautoescape %}
+                </div>
+            </div>
+
+              <div class="owl-carousel-test owl-carousel owl-theme testmonial-section">
+                            <div class="item">
+                                 <div>
+                                 {% autoescape on %}
+                            <p>{{ index.stories }}</p>
+                               {% endautoescape %}
+
+                            <h4>{{ index.customername }}</h4>
+                        </div>
+                            </div>
+                        </div>
+        </div>
+    </section>
+
+
+<section class="page-section counter-section">
+        <div class="container intro">
+            <div class="row text-center">
+                <h2 class="title-section"><span class="title-regular clr-fff">Our Achievements</span></h2>
+                <hr class="title-underline mg-count">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="counter">
+      <i class="fa fa-user-secret fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="100" data-speed="1500"></h2>
+       <p class="count-text ">Corporate Clients
+       </p>
+    </div>
+            </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+               <div class="counter">
+      <i class="fa fa-users fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
+      <p class="count-text ">Happy Students</p>
+    </div>
+              </div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="counter">
+      <i class="fa fa-book fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
+      <p class="count-text ">Courses</p>
+    </div></div>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="counter">
+      <i class="fa fa-lightbulb-o fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2>
+      <p class="count-text ">Instructors</p>
+    </div>
+              </div>
+         </div>
+        </div>
+    </section>
+<section class="page-section resource-section">
+        <div class="container intro">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="title-section"><span class="title-regular">Latest Resources</span></h1>
+                    <hr class="title-underline-center">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="resource">
+
+                     {% for blog1 in blog1 %}
+                    <div class="col-md-4 col-sm-6">
+
+                           <img src="../media/{{ blog1.image }}">
+                            <label>
+                              <a href="/blog_detail/">{{ blog1.title }}</a></label>
+
+                             {% autoescape on %}
+                            <p>{{ blog1.description[:300] }}</p>
+                              {% endautoescape %}
+                            <a href="/blog_detail/" class="btn btn-xs btn-primary ml-15">Read more...</a>
+
+                    </div>
+                     {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="demo-section">
+        <div class="container intro">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="title-section"><span class="title-regular clr-fff">Request a Free Demo</span></h1>
+                    <hr class="title-underline-center">
+
+                </div>
+            </div>
+            <div class="row">
+
+
+
+                <form action="/send" class="request_form" method="post">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+  <div class="half left cf fx">
+    <input type="text" id="input-name" name="name" placeholder="Full Name*" required>
+    <input type="email" id="input-email" name="email" placeholder="Email address*" required>
+    <input type="text" id="input-phone" name="phone" placeholder="Phone*" required>
+  </div>
+  <div class="right cf">
+    <textarea name="message" type="text" id="input-message" rows="3" placeholder="Message" required></textarea>
+  </div>
+ <div class="text-center pd-30">
+                <button id="request_btn" type="send message" class="demo" value="Send Message">Send Message</button>
+            </div>
+</form>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="page-section rate-section">
+        <div class="container intro">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="title-section"><span class="title-regular">Our Customers Rate us as Excellent</span></h1>
+                    <hr class="title-underline-center">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 resource">
+                    <div class="col-md-4 col-sm-6">
+
+                           <img src="{{ static('img/google.png') }}">
+
+
+                    </div>
+                     <div class="col-md-4 col-sm-6 re-main">
+
+                           <img src="{{ static('img/trust.png') }}">
+
+
+                    </div>
+                   <div class="col-md-4 col-sm-6 re-main">
+
+                           <img src="{{ static('img/fb.jpg') }}">
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-section client-section">
+        <div class="container intro">
+            <div class="row text-center">
+                <h2 class="title-section"><span class="title-regular clr-fff">Our Clients</span></h2>
+                <hr class="title-underline mg-count">
+            </div>
+            <div class="row">
+
+                <div class="owl-carousel-client owl-carousel owl-theme">
+                            {% for clientimages in clientimages %}
+                            <div class="item">
+                                <a title="Second Image" class="fancybox-pop fancybox.image" href="../media/{{ clientimages.image }}" rel="portfolio-1">
+                                    <img src="../media/{{ clientimages.image }}" alt="" class="img-responsive">
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+  <div class="modal fade myVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title">WATCH ADOBE CQ5 COURSE PREVIOUS CLASS</h4>
+        </div>
+        <div class="modal-body">
+
+         <form class="cf">
+  <div class="left cf">
+
+    <input type="email" id="input-email" placeholder="Email address*">
+    <input type="phone" id="input-phone" placeholder="Phone*">
+  </div>
+
+ <div class="text-center pd-30">
+                <button type="button" class="btn btn-primary">Unlock Video</button>
+            </div>
+            <p>By providing us with your details, We wont spam your inbox.</p>
+</form>
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
+
+
+{% include 'popup.html' %}
+
+
+{% endblock content %}

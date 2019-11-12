@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'navigation.html' %}
+
+{% include 'header.html' %}
+
+
+
+    <!-- Left Sidebar Container  -->
+    <section class="page-section padding-30">
+        <div class="container">
+            <div class="row margin-top-30">
+                <!-- Content -->
+                <div class="col-md-8 margin-bottom-15">
+                    {% for blog1 in blog1 %}
+                    <div class="blog">
+                    <img src="../media/{{ blog1.image }}">
+                   <div class="blog-information">
+                       <h3>{{ blog1.title }}</h3>
+                       <h6><span><i class="fa fa-calendar" aria-hidden="true"></i>  {{ blog1.date }}  </span> <span> <i class="fa fa-user" aria-hidden="true"></i>  {{ blog1.published_by }}  </span></h6>
+                       {% autoescape on %}
+                       <p>{{ blog1.description[:300] }}</p>
+                       {% endautoescape %}
+                       <div class="training-mode text-left margin-bottom-30">
+                               <a href="/blog_detail">Read More</a>
+                           </div>
+                   </div>
+                    </div>
+                     {% endfor %}
+
+                </div>
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <aside class="blog-categeory">
+                        <h3 class="sidebar-header">Categories</h3>
+                        <hr class="title-underline">
+                        <ul class="nav nav-list">
+                            <li><a href="blog.html"><b class="caret-right"></b> Artificial Intelligence <span class="pull-right"> 23 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Big Data <span class="pull-right"> 62 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Business Analytics <span class="pull-right"> 14 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Career Enhancement <span class="pull-right"> 43 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Cloud Computing <span class="pull-right"> 29 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Corporate Case Studies <span class="pull-right"> 56 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Cybersecurity <span class="pull-right"> 78 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Data Science <span class="pull-right"> 98 </span></a></li>
+                            <li><a href="blog.html"><b class="caret-right"></b> Deep Learning <span class="pull-right"> 46 </span></a></li>
+                        </ul>
+                        <hr>
+                        {% include 'request.html' %}
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% include 'popup.html' %}
+   
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'navigation.html' %}
+
+
+{% include 'header.html' %}
+
+
+
+    <section class="page-section padding-30">
+        <div class="container">
+            <div class="row corporate">
+                <!-- Content -->
+                <div class="col-md-12">
+                    <h2 class="">{{ staffing.subtitle }}</h2>
+                    {% autoescape on %}
+                    <p class="text-center">{{ staffing.description }}</p>
+                    {% endautoescape %}
+                    <div class="row margin-top-30 instructor">
+                        <div class="col-md-12">
+                            
+                            <div class="col-md-9">
+                                <h2>{{ staffing.sub2title }}</h2>
+                                <hr class="title-underline">
+
+                           <div class="row">
+                               {% for staffingimages in staffingimages %}
+                                <div class="col-md-4 mg-5">
+                                    <a class="fancybox fancybox.image" rel="gallery1" href="../media/{{ staffingimages.image }}" title="Title Slide 1">
+                                        <img src="../media/{{ staffingimages.image }}" alt="" class="img-responsive" />
+                                    </a>
+                                </div>
+                               {% endfor %}
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                       {% include 'request.html' %}
+                        </div>
+                      </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+{% include 'csection.html'%}
+{% include 'popup.html' %}
+
+{% endblock content %}

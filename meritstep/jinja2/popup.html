@@ -1,0 +1,39 @@
+
+<!-- Modal -->
+  <div class="modal fade liveDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title">Join Us For A Free Demo</h4>
+        </div>
+        <div class="modal-body">
+           <div class="text-center">
+               <p>We'll walkthrough the training program and answer any questions you have about the course.</p>
+           </div>
+              <form action="/modal" class="cf" method="post">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+  <div class="left cf">
+
+    <input type="email" name="email" id="input-email" placeholder="Email address*"required>
+    <input type="text" name="phone" id="input-phone" placeholder="Phone*"required>
+    <select name="course" class="pd-8">
+                        <option>Select Course</option>
+                                                {% for course in courses1 %}
+                                                <option value="{{ course.title }}">{{ course.title }}</option>
+                                                 {% endfor %}
+                                             </select>
+  </div>
+
+ <div class="text-center pd-30">
+                 <button id="modal_btn" type="submit" class="demo" value="Submit">Submit</button>
+            </div>
+            <p>By providing us with your details, We wont spam your inbox</p>
+</form>
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+    <!-- Modal popups end-->

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'navigation.html' %}
+
+{% include 'header.html' %}
+
+
+
+
+    <!-- Left Sidebar Container  -->
+    <section class="page-section padding-30">
+        <div class="container">
+            <div class="row">
+                <!-- Content -->
+                <div class="col-md-9 col-md-push-3 margin-bottom-15">
+                    <h2>All Courses</h2>
+                   <div class="row all-courses">
+
+                        {% for courses1 in courses1 %}
+                        <div class="col-md-4 item">
+
+                            <a href="/course_details/{{ courses1.id }}"><img class="img-thumbnail img-responsive margin-bottom-15" src="../media/{{ courses1.image }}" alt=""></a>
+                     <div class="course-enroll">
+                     <h2>{{ courses1.title }}</h2>
+                    <div class="fx">
+                    <p><a href="/course_details/{{ courses1.id }}" class="btn btn-md btn-primary">Enroll Now</a></p>
+                    <h6 class="pull-right"><i class="fa fa-clock-o" aria-hidden="true"></i> <strong>Duration</strong>{{ courses1.duration }}<br>
+
+<i class="fa fa-money" aria-hidden="true"></i> <strong>Course Fee</strong>{{ courses1.coursefee }}
+
+</h6>
+</div></div>
+                </div>
+                 {% endfor %}
+
+
+
+                   </div>
+                    
+                </div>
+
+
+                <!-- Sidebar -->
+                <div class="col-md-3 col-md-pull-9">
+                    <aside class="sidebar">
+                        <h4 class="sidebar-header">Courses By Vendor</h4>
+                        <ul class="nav nav-list">
+                            {% for courses1 in courses1 %}
+                            <li><a href="/course_details/{{ courses1.id }}"><b class="caret-right"></b>{{ courses1.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <hr>
+                        <h4 class="sidebar-header">{{ courses.title }}</h4>
+                           {% autoescape on %}
+                        <p>{{ courses.description }}</p>
+                            {% endautoescape %}
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% include 'popup.html' %}
+
+{% endblock content %}

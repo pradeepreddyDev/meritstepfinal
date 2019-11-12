@@ -1,0 +1,30 @@
+
+
+
+
+
+    <div class="intro bg-orange margin-top-30">
+            <div class="bg-black">
+                <div class="text-center">
+                    <h1 class="title-section"><span class="title-regular clr-fff">Request a Free Demo</span></h1>
+                </div>
+            </div>
+            <div class="row">
+
+
+                <form action="/send" class="request_form" method="post">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+  <div class="left cf">
+    <input type="text" id="input-name" name="name" placeholder="Full Name*"required>
+    <input type="email" id="input-email" name="email" placeholder="Email address*"required>
+    <input type="text" id="input-phone" name="phone" placeholder="Phone*"required>
+  </div>
+  <div class="right cf">
+    <textarea  id="request_message" rows="3" name="message" placeholder="Message"required></textarea>
+  </div>
+ <div class="text-center pd-30">
+                <button id="request_btn" type="send message" class="demo" value="Send Message">Send Message</button>
+            </div>
+</form>
+            </div>
+        </div>

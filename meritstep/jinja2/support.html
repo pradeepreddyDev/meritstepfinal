@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'navigation.html' %}
+
+
+{% include 'header.html' %}
+
+
+
+    <section class="page-section padding-30">
+        <div class="container">
+            <div class="row corporate">
+                <!-- Content -->
+                <div class="col-md-12">
+                    <h2 class="text-center">{{ support.sub1title }}</h2>
+                    {% autoescape on %}
+                    <p class="text-center">{{ support.description }}</p>
+                     {% endautoescape %}
+                    <div class="row margin-top-30 instructor">
+                        <div class="col-md-12">
+                             <div class="col-md-9">
+                                <h2>{{ support.sub2title }}</h2>
+                                <hr class="title-underline">
+                                <ul>
+                                    {% autoescape on %}{{ support.seconddescription }}{% endautoescape %}
+                                </ul>
+                        </div>
+                        <div class="col-md-3">
+                           {% include 'request.html' %}
+                        </div>
+                      </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+  
+   
+{% include 'csection.html'%}
+   
+{% include 'popup.html' %}
+{% endblock content %}
